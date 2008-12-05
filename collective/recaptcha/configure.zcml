@@ -1,0 +1,20 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:zcml="http://namespaces.zope.org/zcml">
+  
+  <configure zcml:condition="not-installed collective.captcha">
+      <adapter
+          factory=".view.RecaptchaInfo"/>
+      <adapter
+          factory=".settings.RecaptchaSettings"/>
+
+      <browser:view
+          name="captcha"
+          for="*"
+          class=".view.RecaptchaView"
+          permission="zope2.Public"
+          />
+  </configure>
+
+</configure>
