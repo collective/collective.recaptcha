@@ -1,8 +1,19 @@
 Changelog
 =========
 
-0.1 - Unreleased
-----------------
+1.0b2 (2009-01-14)
+------------------
+
+* Added support for verifying the captcha multiple times within the same request.
+  [davisagli]
+
+* Added security declarations on the view methods so they can be called from
+  restricted Python.
+  [davisagli]
+
+
+1.0b1 (2009-01-14)
+------------------
 
 * Initial release
 

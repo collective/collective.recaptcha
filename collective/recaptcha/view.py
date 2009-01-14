@@ -9,11 +9,14 @@ from collective.recaptcha.settings import getRecaptchaSettings
 
 class IRecaptchaInfo(Interface):
     error = schema.TextLine()
+    verified = schema.Bool()
+    
 class RecaptchaInfoAnnotation(object):
     implements(IRecaptchaInfo)
     adapts(IBrowserRequest)
     def __init__(self):
         self.error = None
+        self.verified = False
 RecaptchaInfo = factory(RecaptchaInfoAnnotation)
 
 class RecaptchaView(BrowserView):
@@ -47,6 +50,10 @@ class RecaptchaView(BrowserView):
         return None
 
     def verify(self, input):
+        info = IRecaptchaInfo(self.request)
+        if info.verified:
+            return True
+        
         if not self.settings.private_key:
             raise ValueError, 'No recaptcha private key configured. Go to path/to/site/@@recaptcha-settings to configure.'
         challenge_field = self.request.get('recaptcha_challenge_field')
@@ -56,7 +63,9 @@ class RecaptchaView(BrowserView):
             remote_addr = self.request.get('REMOTE_ADDR')
         res = submit(challenge_field, response_field, self.settings.private_key, remote_addr)
         if res.error_code:
-            IRecaptchaInfo(self.request).error = res.error_code
+            info.error = res.error_code
+        
+        info.verified = res.is_valid
         return res.is_valid
 
     @property

@@ -14,6 +14,13 @@
       class=".view.RecaptchaView"
       permission="zope2.Public"
       />
+
+  <!-- make security assertions for use from restricted Python -->
+  <class
+      class="collective.recaptcha.view.RecaptchaView">
+      <allow
+          attributes="image_tag audio_url verify external"/>
+  </class>
   
   <browser:page
       name="recaptcha-settings"
