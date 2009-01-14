@@ -58,7 +58,7 @@ class RecaptchaView(BrowserView):
             raise ValueError, 'No recaptcha private key configured. Go to path/to/site/@@recaptcha-settings to configure.'
         challenge_field = self.request.get('recaptcha_challenge_field')
         response_field = self.request.get('recaptcha_response_field')
-        remote_addr = self.request.get('HTTP_X_FORWARDED_FOR')
+        remote_addr = self.request.get('HTTP_X_FORWARDED_FOR', '').split(',')[0]
         if not remote_addr:
             remote_addr = self.request.get('REMOTE_ADDR')
         res = submit(challenge_field, response_field, self.settings.private_key, remote_addr)

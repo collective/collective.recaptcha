@@ -4,6 +4,10 @@ Changelog
 1.0b2 (2009-01-14)
 ------------------
 
+* Correctly handle comma-delimited values in the HTTP_X_FORWARDED_FOR
+  header.
+  [davisagli]
+
 * Added support for verifying the captcha multiple times within the same request.
   [davisagli]
 
