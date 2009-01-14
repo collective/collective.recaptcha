@@ -12,7 +12,7 @@ setup(name='collective.recaptcha',
       classifiers=[
         "Programming Language :: Python",
         "Topic :: Software Development :: Libraries :: Python Modules",
-        "Framework :: Zope",
+        "Framework :: Zope2",
         ],
       keywords='captcha recaptcha zope plone',
       author='David Glick',
