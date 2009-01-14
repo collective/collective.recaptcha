@@ -38,7 +38,7 @@ class RecaptchaView(BrowserView):
         """ % lang
         
         if not self.settings.public_key:
-            raise ValueError, 'No recaptcha public key configured.'
+            raise ValueError, 'No recaptcha public key configured. Go to path/to/site/@@recaptcha-settings to configure.'
         use_ssl = self.request['SERVER_URL'].startswith('https://')
         error = IRecaptchaInfo(self.request).error
         return options + displayhtml(self.settings.public_key, use_ssl=use_ssl, error=error)
@@ -48,7 +48,7 @@ class RecaptchaView(BrowserView):
 
     def verify(self, input):
         if not self.settings.private_key:
-            raise ValueError, 'No recaptcha private key configured.'
+            raise ValueError, 'No recaptcha private key configured. Go to path/to/site/@@recaptcha-settings to configure.'
         challenge_field = self.request.get('recaptcha_challenge_field')
         response_field = self.request.get('recaptcha_response_field')
         remote_addr = self.request.get('HTTP_X_FORWARDED_FOR')
