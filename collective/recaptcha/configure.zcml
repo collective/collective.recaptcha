@@ -3,18 +3,23 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:zcml="http://namespaces.zope.org/zcml">
   
-  <configure zcml:condition="not-installed collective.captcha">
-      <adapter
-          factory=".view.RecaptchaInfo"/>
-      <adapter
-          factory=".settings.RecaptchaSettings"/>
+  <adapter
+      factory=".view.RecaptchaInfo"/>
+  <adapter
+      factory=".settings.RecaptchaSettings"/>
 
-      <browser:view
-          name="captcha"
-          for="*"
-          class=".view.RecaptchaView"
-          permission="zope2.Public"
-          />
-  </configure>
+  <browser:view
+      name="captcha"
+      for="*"
+      class=".view.RecaptchaView"
+      permission="zope2.Public"
+      />
+  
+  <browser:page
+      name="recaptcha-settings"
+      for="zope.app.component.interfaces.ISite"
+      class=".settings.RecaptchaSettingsForm"
+      permission="zope2.ManageProperties"
+      />
 
 </configure>

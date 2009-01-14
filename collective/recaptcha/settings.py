@@ -5,16 +5,22 @@ from zope.app.component.hooks import getSite
 from zope import schema
 from zope.annotation import factory, IAttributeAnnotatable
 
-# XXX i18n
+try:
+    from Products.Five.formlib.formbase import EditForm
+except ImportError:
+    from zope.formlib.form import EditForm
+from zope.formlib.form import FormFields
+
+from collective.recaptcha import RecaptchaMessageFactory as _
 
 class IRecaptchaSettings(Interface):
     
     public_key = schema.TextLine(
-        title = u'Public Key'
+        title = _(u'Public Key')
         )
         
     private_key = schema.TextLine(
-        title = u'Private Key'
+        title = _(u'Private Key')
         )
 
 class RecaptchaSettingsAnnotations(Persistent):
@@ -29,3 +35,7 @@ RecaptchaSettings = factory(RecaptchaSettingsAnnotations)
 def getRecaptchaSettings():
     site = getSite()
     return IRecaptchaSettings(site)
+
+class RecaptchaSettingsForm(EditForm):
+    form_fields = FormFields(IRecaptchaSettings)
+    label = _(u"Recaptcha settings")

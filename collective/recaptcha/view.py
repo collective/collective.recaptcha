@@ -5,7 +5,7 @@ from zope import schema
 from zope.publisher.interfaces.browser import IBrowserRequest
 from Products.Five import BrowserView
 from recaptcha.client.captcha import displayhtml, submit
-from collective.captcha.settings import getRecaptchaSettings
+from collective.recaptcha.settings import getRecaptchaSettings
 
 class IRecaptchaInfo(Interface):
     error = schema.TextLine()
@@ -47,7 +47,7 @@ class RecaptchaView(BrowserView):
         return None
 
     def verify(self, input):
-        if self.settings.private_key:
+        if not self.settings.private_key:
             raise ValueError, 'No recaptcha private key configured.'
         challenge_field = self.request.get('recaptcha_challenge_field')
         response_field = self.request.get('recaptcha_response_field')
