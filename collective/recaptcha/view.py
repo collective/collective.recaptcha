@@ -49,7 +49,7 @@ class RecaptchaView(BrowserView):
     def audio_url(self):
         return None
 
-    def verify(self, input):
+    def verify(self, input=None):
         info = IRecaptchaInfo(self.request)
         if info.verified:
             return True

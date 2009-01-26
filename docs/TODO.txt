@@ -1,0 +1,1 @@
+- Use a custom recaptcha theme so we can make the interface more like collective.captcha
