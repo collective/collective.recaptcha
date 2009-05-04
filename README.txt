@@ -39,7 +39,7 @@ Differences between this package's API and collective.captcha
 -------------------------------------------------------------
 
 Because the simplest form of Recaptcha is rendered entirely via a remote call
-to the service, we couldn't implement the captcha view interface from
+to the service, we couldn't implement the ICaptchaView interface from
 collective.captcha exactly as it was defined there.  Differences include::
 
   * The image_tag method returns the HTML for the entire CAPTCHA widget,

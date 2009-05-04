@@ -1,11 +1,16 @@
 Changelog
 =========
 
-1.0 (unreleased)
+1.0 (2009-05-04)
 ----------------
+
+* Fixed method signature for verify method so that the vestigial input parameter
+  from collective.captcha's ICaptchaView is no longer required.
+  [davisagli]
 
 * Added documentation.
   [davisagli]
+
 
 1.0b2 (2009-01-14)
 ------------------
