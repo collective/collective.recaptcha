@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.0'
+version = '1.0.1'
 
 setup(name='collective.recaptcha',
       version=version,
@@ -25,7 +25,7 @@ setup(name='collective.recaptcha',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          'recaptcha-client',
+          'recaptcha-client != 1.0.4',
           # -*- Extra requirements: -*-
       ],
       entry_points="""
