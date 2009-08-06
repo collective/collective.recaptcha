@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.0.1'
+version = '1.1'
 
 setup(name='collective.recaptcha',
       version=version,
@@ -17,7 +17,7 @@ setup(name='collective.recaptcha',
       keywords='captcha recaptcha zope plone',
       author='David Glick',
       author_email='davidglick@onenw.org',
-      url='',
+      url='http://plone.org/products/collective.recaptcha',
       license='LGPL',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['collective'],
