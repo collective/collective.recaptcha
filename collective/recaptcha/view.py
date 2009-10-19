@@ -33,7 +33,7 @@ class RecaptchaView(BrowserView):
         else:
             lang = 'en'
         options = """
-        <script>
+        <script type="text/javascript">
         var RecaptchaOptions = {
             lang: '%s'
         };
