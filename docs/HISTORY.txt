@@ -1,0 +1,45 @@
+Changelog
+=========
+
+1.1 (unreleased)
+----------------
+
+
+1.0.1 (2009-08-05)
+------------------
+
+* Disallowed dependency on broken release of recaptcha-client (1.0.4).
+  [davisagli]
+
+
+1.0 (2009-05-04)
+----------------
+
+* Fixed method signature for verify method so that the vestigial input parameter
+  from collective.captcha's ICaptchaView is no longer required.
+  [davisagli]
+
+* Added documentation.
+  [davisagli]
+
+
+1.0b2 (2009-01-14)
+------------------
+
+* Correctly handle comma-delimited values in the HTTP_X_FORWARDED_FOR
+  header.
+  [davisagli]
+
+* Added support for verifying the captcha multiple times within the same request.
+  [davisagli]
+
+* Added security declarations on the view methods so they can be called from
+  restricted Python.
+  [davisagli]
+
+
+1.0b1 (2009-01-14)
+------------------
+
+* Initial release
+
