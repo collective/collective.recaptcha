@@ -29,4 +29,12 @@
       permission="zope2.ManageProperties"
       />
 
+  <view
+      type="zope.publisher.interfaces.browser.IBrowserRequest"
+      for="collective.recaptcha.field.ICaptcha"
+      provides="zope.app.form.interfaces.IInputWidget"
+      factory=".widget.CaptchaWidget"
+      permission="zope.Public"
+      />
+	  	  
 </configure>
