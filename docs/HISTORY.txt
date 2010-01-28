@@ -3,7 +3,8 @@ Changelog
 
 1.1 (unreleased)
 ----------------
-
+* Added support for zope.formlib with custom field and widget.
+  [mlundwall]
 
 1.0.1 (2009-08-05)
 ------------------
