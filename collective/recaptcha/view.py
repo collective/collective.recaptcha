@@ -41,7 +41,8 @@ class RecaptchaView(BrowserView):
         """ % lang
         
         if not self.settings.public_key:
-            raise ValueError, 'No recaptcha public key configured. Go to path/to/site/@@recaptcha-settings to configure.'
+            return '<div>No recaptcha public key configured. Go to <a href="%s/@@recaptcha-settings">%s/@@recaptcha-settings</a> to configure.</div>' % \
+                    (self.context.portal_url(), self.context.portal_url())
         use_ssl = self.request['SERVER_URL'].startswith('https://')
         error = IRecaptchaInfo(self.request).error
         return options + displayhtml(self.settings.public_key, use_ssl=use_ssl, error=error)

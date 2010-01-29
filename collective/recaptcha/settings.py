@@ -39,3 +39,4 @@ def getRecaptchaSettings():
 class RecaptchaSettingsForm(EditForm):
     form_fields = FormFields(IRecaptchaSettings)
     label = _(u"Recaptcha settings")
+    description = _(u"If you don't have a public and private key go to http://recaptcha.net/ and sign up.")
