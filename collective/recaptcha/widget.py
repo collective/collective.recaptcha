@@ -6,7 +6,7 @@ from zope.app.form.browser.textwidgets import renderElement
 from Acquisition import aq_inner
 
 
-from knutpunkt.content import contentMessageFactory as _
+from collective.recaptcha import RecaptchaMessageFactory as _
 
 
 class CaptchaWidget(ASCIIWidget):
