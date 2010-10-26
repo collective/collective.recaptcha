@@ -29,4 +29,14 @@
       permission="zope2.ManageProperties"
       />
 
+  <!-- Alternate option to access configuration for instances where
+    plone.formwidget.recaptcha is in place -->
+  <browser:page
+      name="collective.recaptcha-settings"
+      for="zope.app.component.interfaces.ISite"
+      class=".settings.RecaptchaSettingsForm"
+      permission="zope2.ManageProperties"
+      />
+
+
 </configure>
