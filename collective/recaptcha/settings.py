@@ -45,12 +45,14 @@ def getRecaptchaSettings():
         # its settings from the registry
         try:
             registry = getUtility(IRegistry)
-            return registry.forInterface(IReCaptchaSettings)
+            settings = registry.forInterface(IReCaptchaSettings)
+            if settings.public_key and settings.private_key:
+                return settings
         except:
             pass
 
-    # if its not installed, fall back to our storage of an annotation
-    # on the site
+    # if its not installed, or the settings haven't been configured,
+    # fall back to our storage of an annotation on the site
     site = getSite()
     return IRecaptchaSettings(site)
 
