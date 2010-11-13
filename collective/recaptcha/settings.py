@@ -1,6 +1,6 @@
 from persistent import Persistent
 from zope.interface import Interface, implements
-from zope.component import adapts
+from zope.component import adapts, getUtility
 from zope.app.component.hooks import getSite
 from zope import schema
 from zope.annotation import factory, IAttributeAnnotatable
@@ -10,6 +10,13 @@ try:
 except ImportError:
     from zope.formlib.form import EditForm
 from zope.formlib.form import FormFields
+
+try:
+    from plone.registry.interfaces import IRegistry
+    from plone.formwidget.recaptcha.interfaces import IReCaptchaSettings
+    TRY_REGISTRY = True
+except ImportError:
+    TRY_REGISTRY = False
 
 from collective.recaptcha import RecaptchaMessageFactory as _
 
@@ -33,8 +40,20 @@ class RecaptchaSettingsAnnotations(Persistent):
 RecaptchaSettings = factory(RecaptchaSettingsAnnotations)
 
 def getRecaptchaSettings():
+    if TRY_REGISTRY:
+        # if plone.formwidget.recaptcha is installed, try getting
+        # its settings from the registry
+        try:
+            registry = getUtility(IRegistry)
+            return registry.forInterface(IReCaptchaSettings)
+        except:
+            pass
+
+    # if its not installed, fall back to our storage of an annotation
+    # on the site
     site = getSite()
     return IRecaptchaSettings(site)
+
 
 class RecaptchaSettingsForm(EditForm):
     form_fields = FormFields(IRecaptchaSettings)

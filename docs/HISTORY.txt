@@ -1,9 +1,12 @@
 Changelog
 =========
 
-1.1 (unreleased)
+1.1 (2010-11-12)
 ----------------
 
+* Use the recaptcha settings from plone.formwidget.recaptcha if it is
+  installed, since it overrides our recaptcha-settings view.
+  [davisagli]
 
 1.0.1 (2009-08-05)
 ------------------
