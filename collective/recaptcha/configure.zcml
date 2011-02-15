@@ -8,19 +8,13 @@
   <adapter
       factory=".settings.RecaptchaSettings"/>
 
-  <browser:view
+  <browser:page
       name="captcha"
       for="*"
       class=".view.RecaptchaView"
-      permission="zope2.Public"
+      permission="zope.Public"
+      allowed_attributes="image_tag audio_url verify external"
       />
-
-  <!-- make security assertions for use from restricted Python -->
-  <class
-      class="collective.recaptcha.view.RecaptchaView">
-      <allow
-          attributes="image_tag audio_url verify external"/>
-  </class>
   
   <browser:page
       name="recaptcha-settings"
