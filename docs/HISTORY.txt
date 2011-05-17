@@ -1,11 +1,14 @@
 Changelog
 =========
 
-1.2 (Unreleased)
-----------------
+1.1.2 (2011-05-17)
+------------------
 
-* Add support for Zope2.13: try to use five.formlib first. Add info on used
-  formlib in log.
+* Require the latest version of recaptcha-client, which has the correct HTTPS
+  URL for the recaptcha service.
+  [davisagli]
+
+* Add support for Zope2.13: try to use five.formlib first.
   [toutpt]
 
 1.1.1 (2011-02-15)

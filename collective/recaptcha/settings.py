@@ -6,15 +6,15 @@ from zope import schema
 from zope.annotation import factory, IAttributeAnnotatable
 
 try:
+    # Zope 2.12+
     from five.formlib.formbase import EditForm
-    logger.info('use five.formlib')
 except ImportError:
     try:
+        # older Zope 2s
         from Products.Five.formlib.formbase import EditForm
-        logger.info('use Products.Five.formlib')
     except ImportError:
+        # Zope 3
         from zope.formlib.form import EditForm
-        logger.info('use zope.formlib')
 
 from zope.formlib.form import FormFields
 
