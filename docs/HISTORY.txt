@@ -4,7 +4,9 @@ Changelog
 1.2 (Unreleased)
 ----------------
 
-
+* Add support for Zope2.13: try to use five.formlib first. Add info on used
+  formlib in log.
+  [toutpt]
 
 1.1.1 (2011-02-15)
 ------------------
