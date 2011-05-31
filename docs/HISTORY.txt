@@ -1,64 +1,71 @@
 Changelog
 =========
 
+
 1.1.3 (unreleased)
 ------------------
+
+- Add `z3c.autoinclude` entry point for automatic ZCML loading in Plone 3.3+.
+  [WouterVH]
 
 
 1.1.2 (2011-05-17)
 ------------------
 
-* Require the latest version of recaptcha-client, which has the correct HTTPS
+- Require the latest version of recaptcha-client, which has the correct HTTPS
   URL for the recaptcha service.
   [davisagli]
 
-* Add support for Zope2.13: try to use five.formlib first.
+- Add support for Zope2.13: try to use five.formlib first.
   [toutpt]
+
 
 1.1.1 (2011-02-15)
 ------------------
 
-* Register the @@captcha view using browser:page instead of browser:view,
+- Register the @@captcha view using browser:page instead of browser:view,
   because I still fail to understand the latter and was breaking access from
   restricted python in Zope 2.12.
   [davisagli]
 
+
 1.1 (2010-11-18)
 ----------------
 
-* Use the recaptcha settings from plone.formwidget.recaptcha if it is
+- Use the recaptcha settings from plone.formwidget.recaptcha if it is
   installed, since it overrides our recaptcha-settings view.
   [davisagli]
+
 
 1.0.1 (2009-08-05)
 ------------------
 
-* Disallowed dependency on broken release of recaptcha-client (1.0.4).
+- Disallowed dependency on broken release of recaptcha-client (1.0.4).
   [davisagli]
 
 
 1.0 (2009-05-04)
 ----------------
 
-* Fixed method signature for verify method so that the vestigial input parameter
+- Fixed method signature for verify method so that the vestigial input parameter
   from collective.captcha's ICaptchaView is no longer required.
   [davisagli]
 
-* Added documentation.
+- Added documentation.
   [davisagli]
 
 
 1.0b2 (2009-01-14)
 ------------------
 
-* Correctly handle comma-delimited values in the HTTP_X_FORWARDED_FOR
+- Correctly handle comma-delimited values in the HTTP_X_FORWARDED_FOR
   header.
   [davisagli]
 
-* Added support for verifying the captcha multiple times within the same request.
+- Added support for verifying the captcha multiple times within the same request.
   [davisagli]
 
-* Added security declarations on the view methods so they can be called from
+- Added security declarations on the view methods so they can be called from
   restricted Python.
   [davisagli]
 
@@ -66,5 +73,5 @@ Changelog
 1.0b1 (2009-01-14)
 ------------------
 
-* Initial release
+- Initial release
 
