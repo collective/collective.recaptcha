@@ -27,15 +27,17 @@ except ImportError:
 
 from collective.recaptcha import RecaptchaMessageFactory as _
 
+
 class IRecaptchaSettings(Interface):
-    
+
     public_key = schema.TextLine(
         title = _(u'Public Key')
         )
-        
+
     private_key = schema.TextLine(
         title = _(u'Private Key')
         )
+
 
 class RecaptchaSettingsAnnotations(Persistent):
     implements(IRecaptchaSettings)
@@ -44,7 +46,9 @@ class RecaptchaSettingsAnnotations(Persistent):
     def __init__(self):
         self.public_key = None
         self.private_key = None
+
 RecaptchaSettings = factory(RecaptchaSettingsAnnotations)
+
 
 def getRecaptchaSettings():
     if TRY_REGISTRY:
