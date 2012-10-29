@@ -1,14 +1,9 @@
 from persistent import Persistent
 from zope.interface import Interface, implements
 from zope.component import adapts, getUtility
-try:
-    # Plone 4.3 (Zope 2.13)
-    from zope.component.hooks import getSite
-except ImportError:
-    # < Plone 4.3
-    from zope.app.component.hooks import getSite
 from zope import schema
 from zope.annotation import factory, IAttributeAnnotatable
+from bbb import getSite
 
 try:
     # Zope 2.12+
