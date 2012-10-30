@@ -15,24 +15,12 @@
       permission="zope.Public"
       allowed_attributes="image_tag audio_url verify external"
       />
-
-  <!-- BBB < Plone 4.3 -->
-  <configure zcml:condition="installed zope.app.component">
-      <browser:page
-          name="recaptcha-settings"
-          for="zope.app.component.interfaces.ISite"
-          class=".settings.RecaptchaSettingsForm"
-          permission="zope2.ManageProperties"
-          />
-  </configure>
-
-  <configure zcml:condition="not-installed zope.app.component">
-      <browser:page
-          name="recaptcha-settings"
-          for="zope.component.interfaces.ISite"
-          class=".settings.RecaptchaSettingsForm"
-          permission="zope2.ManageProperties"
-          />
-  </configure>
+  
+  <browser:page
+      name="recaptcha-settings"
+      for=".bbb.ISite"
+      class=".settings.RecaptchaSettingsForm"
+      permission="zope2.ManageProperties"
+      />
 
 </configure>
