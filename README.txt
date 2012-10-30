@@ -55,4 +55,3 @@ collective.captcha exactly as it was defined there.  Differences include::
     This is a bit of a hack so that a template requiring captcha can
     adjust to the different semantics of the @@captcha view in this
     package as compared to collective.captcha.
-
