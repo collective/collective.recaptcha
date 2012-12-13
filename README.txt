@@ -22,6 +22,15 @@ browser view registration will conflict.)
 Before the service will work, you must obtain a public and private key from
 http://recaptcha.net, and configure them at http://path/to/site/@@recaptcha-settings
 
+You can use plone.app.registry in your profile to provide your configuration::
+
+  <registry>
+    <records interface="collective.recaptcha.settings.IReCaptchaSettings">
+     <value key="public_key"></value>
+     <value key="private_key"></value>
+    </records>
+  </registry>
+
 
 Usage
 -----
