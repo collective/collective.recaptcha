@@ -1,9 +1,9 @@
 from persistent import Persistent
 from zope.interface import Interface, implements
 from zope.component import adapts, getUtility
-from zope.app.component.hooks import getSite
 from zope import schema
 from zope.annotation import factory, IAttributeAnnotatable
+from bbb import getSite
 
 try:
     # Zope 2.12+
