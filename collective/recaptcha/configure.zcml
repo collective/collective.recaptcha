@@ -23,4 +23,10 @@
       permission="zope2.ManageProperties"
       />
 
+    <!--
+    example (as does plone.formwidget.recaptcha):
+    http://yourplonesite/@@recaptcha_form
+    -->
+    <!--<include package=".demo" />-->
+
 </configure>
