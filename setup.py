@@ -28,6 +28,11 @@ setup(name='collective.recaptcha',
           'recaptcha-client >= 1.0.6',
           # -*- Extra requirements: -*-
       ],
+      extras_require={
+          'test': [
+              'plone.app.testing',
+          ],
+      },
       entry_points="""
       # -*- Entry points: -*-
       [z3c.autoinclude.plugin]
