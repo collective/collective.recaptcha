@@ -1,6 +1,12 @@
 Changelog
 =========
 
+1.1.5 (Unreleased)
+------------------
+
+- Include a formlib widget that provides the captcha [frapell]
+
+
 1.1.4 (2013-04-09)
 ------------------
 

@@ -44,6 +44,17 @@ You can verify Recaptcha input by testing the return value of::
   context.restrictedTraverse('@@captcha').verify()
 
 
+Widget
+------
+
+Included with the package, there's a formlib widget you can just use with
+your form.
+Just use a schema.TextLine field with the ReCaptchaWidget.
+Validation works with the validation of the form.
+
+You can see a form example under the demo folder.
+
+
 Differences between this package's API and collective.captcha
 -------------------------------------------------------------
 
