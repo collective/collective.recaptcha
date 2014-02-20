@@ -25,7 +25,7 @@ http://recaptcha.net, and configure them at http://path/to/site/@@recaptcha-sett
 You can use plone.app.registry in your profile to provide your configuration::
 
   <registry>
-    <records interface="collective.recaptcha.settings.IReCaptchaSettings">
+    <records interface="collective.recaptcha.settings.IRecaptchaSettings">
      <value key="public_key"></value>
      <value key="private_key"></value>
     </records>

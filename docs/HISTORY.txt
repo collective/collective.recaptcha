@@ -1,6 +1,13 @@
 Changelog
 =========
 
+1.1.5 (Unreleased)
+------------------
+
+- Minor correction in interface name, in the README
+  [frapell]
+
+
 1.1.4 (2013-04-09)
 ------------------
 
