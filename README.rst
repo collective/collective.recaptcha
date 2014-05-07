@@ -64,3 +64,11 @@ collective.captcha exactly as it was defined there.  Differences include::
     This is a bit of a hack so that a template requiring captcha can
     adjust to the different semantics of the @@captcha view in this
     package as compared to collective.captcha.
+
+Tests
+-----
+
+This add-on is tested using Travis CI. The current status of the add-on is :
+
+.. image:: https://secure.travis-ci.org/collective/collective.recaptcha.png
+    :target: http://travis-ci.org/collective/collective.recaptcha
