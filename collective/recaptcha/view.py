@@ -4,7 +4,8 @@ from zope.annotation import factory
 from zope import schema
 from zope.publisher.interfaces.browser import IBrowserRequest
 from Products.Five import BrowserView
-from recaptcha.client.captcha import displayhtml, submit
+# from recaptcha.client.captcha import displayhtml, submit
+from norecaptcha.captcha import displayhtml, submit
 from collective.recaptcha.settings import getRecaptchaSettings
 
 
@@ -63,12 +64,11 @@ class RecaptchaView(BrowserView):
         if not self.settings.private_key:
             raise ValueError, 'No recaptcha private key configured. \
                 Go to path/to/site/@@recaptcha-settings to configure.'
-        challenge_field = self.request.get('recaptcha_challenge_field')
-        response_field = self.request.get('recaptcha_response_field')
+        response_field = self.request.get('g-recaptcha-response')
         remote_addr = self.request.get('HTTP_X_FORWARDED_FOR', '').split(',')[0]
         if not remote_addr:
             remote_addr = self.request.get('REMOTE_ADDR')
-        res = submit(challenge_field, response_field, self.settings.private_key, remote_addr)
+        res = submit(response_field, self.settings.private_key, remote_addr)
         if res.error_code:
             info.error = res.error_code
 
