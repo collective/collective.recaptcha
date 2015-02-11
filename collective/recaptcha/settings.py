@@ -1,7 +1,8 @@
+# -*- coding: utf8 -*-
 from persistent import Persistent
-from plone.registry.interfaces import IRegistry
 from zope.interface import Interface, implements
-from zope.component import adapts, getUtility
+from zope.component import adapts
+from zope.component import getUtility
 from zope import schema
 from zope.annotation import factory, IAttributeAnnotatable
 from bbb import getSite
@@ -19,10 +20,20 @@ except ImportError:
 
 from zope.formlib.form import FormFields
 
+
 try:
-    from plone.formwidget.recaptcha.interfaces import IReCaptchaSettings
-    TRY_REGISTRY = True
+    from plone.registry.interfaces import IRegistry
+    HAS_REGISTRY = True
 except ImportError:
+    HAS_REGISTRY = False
+
+if HAS_REGISTRY:
+    try:
+        from plone.formwidget.recaptcha.interfaces import IReCaptchaSettings
+        TRY_REGISTRY = True
+    except ImportError:
+        TRY_REGISTRY = False
+else:
     TRY_REGISTRY = False
 
 from collective.recaptcha import RecaptchaMessageFactory as _
@@ -51,6 +62,11 @@ RecaptchaSettings = factory(RecaptchaSettingsAnnotations)
 
 
 def getRecaptchaSettings():
+    # If we do not have registry do not even try to use it
+    if not HAS_REGISTRY:
+        site = getSite()
+        return IRecaptchaSettings(site)
+
     registry = getUtility(IRegistry)
     if TRY_REGISTRY:
         # if plone.formwidget.recaptcha is installed, try getting
