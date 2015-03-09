@@ -4,7 +4,6 @@ from zope.annotation import factory
 from zope import schema
 from zope.publisher.interfaces.browser import IBrowserRequest
 from Products.Five import BrowserView
-# from recaptcha.client.captcha import displayhtml, submit
 from norecaptcha.captcha import displayhtml, submit
 from collective.recaptcha.settings import getRecaptchaSettings
 
@@ -42,7 +41,6 @@ class RecaptchaView(BrowserView):
         if not self.settings.public_key:
             raise ValueError, 'No recaptcha public key configured. \
                 Go to path/to/site/@@recaptcha-settings to configure.'
-        # error = IRecaptchaInfo(self.request).error
         return displayhtml(self.settings.public_key, language=lang)
 
     def audio_url(self):
