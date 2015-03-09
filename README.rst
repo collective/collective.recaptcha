@@ -11,6 +11,12 @@ browser view, so these two packages can be swapped for each other relatively
 simply.  Use collective.captcha if you need to not be dependent on an external
 service; use collective.recaptcha for a slightly better user experience.
 
+Upgrade
+-------
+
+Upgrading to collective.recaptcha 2.* (reCaptcha API V2) you need double check your keys
+because global Keys are not supported in the V2 API, so you need to create a new key
+if you wish to use the V2 API.
 
 Installation and Configuration
 ------------------------------
@@ -20,7 +26,7 @@ this package at the same time as collective.captcha, because the '@@captcha'
 browser view registration will conflict.)
 
 Before the service will work, you must obtain a public and private key from
-http://recaptcha.net, and configure them at http://path/to/site/@@recaptcha-settings
+https://developers.google.com/recaptcha/, and configure them at http://path/to/site/@@recaptcha-settings
 
 You can use plone.app.registry in your profile to provide your configuration::
 
