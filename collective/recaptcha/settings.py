@@ -38,14 +38,52 @@ class IRecaptchaSettings(Interface):
         title=_(u'Private Key')
     )
 
+    multilingual = schema.Bool(
+        title=_(u'Multilingual'),
+        description=_(u"Check field to use portal's language."),
+        default=True,
+        required=False
+    )
+
+    default_language = schema.Choice(
+        title=_(u'Default Language'),
+        description=_(u'Uncheck multilingual field to use the language below.'),
+        vocabulary="collective.recaptcha.settings.AvailableLanguages",
+        default="en",
+    )
+
+    default_theme = schema.Choice(
+        title=_(u'Default Theme'),
+        vocabulary="collective.recaptcha.settings.AvailableThemes",
+        default="light"
+    )
+
+    fallback = schema.Bool(
+        title=_(u'Fallback'),
+        description=_(u"Check field to use fallback version of recaptcha."),
+        default=False,
+        required=False
+    )
+
 
 class RecaptchaSettingsAnnotations(Persistent):
     implements(IRecaptchaSettings)
     adapts(IAttributeAnnotatable)
 
+    public_key = None
+    private_key = None
+    multilingual = True
+    default_language = 'en'
+    default_theme = 'light'
+    fallback = False
+
     def __init__(self):
         self.public_key = None
         self.private_key = None
+        self.multilingual = True
+        self.default_language = 'en'
+        self.default_theme = 'light'
+        self.fallback = False
 
 RecaptchaSettings = factory(RecaptchaSettingsAnnotations)
 
@@ -57,14 +95,18 @@ def getRecaptchaSettings():
         # its settings from the registry
         try:
             settings = registry.forInterface(IReCaptchaSettings)
-            if settings.public_key and settings.private_key:
+            if settings.public_key and settings.private_key \
+                    and settings.multilingual and settings.default_language \
+                    and settings.default_theme and settings.fallback:
                 return settings
         except:
             pass
     # try getting settings from the registry first
     try:
         settings = registry.forInterface(IRecaptchaSettings)
-        if settings.public_key and settings.private_key:
+        if settings.public_key and settings.private_key \
+                and settings.multilingual and settings.default_language \
+                and settings.default_theme and settings.fallback:
             return settings
     except KeyError:
         # fall back to our storage of an annotation on the site if the settings
