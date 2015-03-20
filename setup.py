@@ -30,7 +30,7 @@ setup(name='collective.recaptcha',
       install_requires=[
           'setuptools',
           # 'recaptcha-client >= 1.0.6',
-          'norecaptcha',
+          'norecaptcha >= 0.2.1',
           'Plone',
           # -*- Extra requirements: -*-
       ],
