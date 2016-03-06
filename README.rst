@@ -1,10 +1,8 @@
 collective.recaptcha
 ====================
 
-This package provides an integration of the Recaptcha service into Zope.
-Recaptcha is a third-party CAPTCHA service provided by Carnegie Mellon
-University.  One of its most interesting features is that the act of
-users answering CAPTCHAs contributes to efforts to digitize books.
+This package provides an integration of the reCAPTCHA service into Zope.
+ReCAPTCHA is a third-party CAPTCHA service provided by Google.
 
 The API is based on collective.captcha and is provided via a "@@captcha"
 browser view, so these two packages can be swapped for each other relatively
@@ -14,8 +12,8 @@ service; use collective.recaptcha for a slightly better user experience.
 Upgrade
 -------
 
-Upgrading to collective.recaptcha 2.* (reCaptcha API V2) you need double check your keys
-because global Keys are not supported in the V2 API, so you need to create a new key
+To upgrade to collective.recaptcha 2.* (reCaptcha API V2), you need double check your keys
+because global keys are not supported in the V2 API, so you need to create a new key
 if you wish to use the V2 API.
 
 Installation and Configuration
@@ -26,7 +24,8 @@ this package at the same time as collective.captcha, because the '@@captcha'
 browser view registration will conflict.)
 
 Before the service will work, you must obtain a public and private key from
-https://developers.google.com/recaptcha/, and configure them at http://path/to/site/@@recaptcha-settings
+https://developers.google.com/recaptcha/, and configure them at
+http://path/to/site/@@recaptcha-settings
 
 You can use plone.app.registry in your profile to provide your configuration::
 

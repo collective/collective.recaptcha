@@ -1,10 +1,10 @@
 Changelog
 =========
 
-2.0.0 (unreleased)
+2.0.0 (2016-03-06)
 ------------------
 
-- Google reCaptcha API v.2
+- Google reCAPTCHA API v.2
   [mamico]
 
 

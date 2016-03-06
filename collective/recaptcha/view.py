@@ -32,15 +32,18 @@ class RecaptchaView(BrowserView):
         self.settings = getRecaptchaSettings()
 
     def image_tag(self):
-        portal_state = queryMultiAdapter((self.context, self.request), name=u'plone_portal_state')
+        portal_state = queryMultiAdapter(
+            (self.context, self.request), name=u'plone_portal_state')
         if portal_state is not None:
             lang = portal_state.language()[:2]
         else:
             lang = 'en'
 
         if not self.settings.public_key:
-            raise ValueError, 'No recaptcha public key configured. \
-                Go to path/to/site/@@recaptcha-settings to configure.'
+            raise ValueError(
+                'No recaptcha public key configured. '
+                'Go to /@@recaptcha-settings to configure.'
+            )
         return displayhtml(self.settings.public_key, language=lang)
 
     def audio_url(self):
@@ -52,8 +55,10 @@ class RecaptchaView(BrowserView):
             return True
 
         if not self.settings.private_key:
-            raise ValueError, 'No recaptcha private key configured. \
-                Go to path/to/site/@@recaptcha-settings to configure.'
+            raise ValueError(
+                'No recaptcha private key configured. '
+                'Go to /@@recaptcha-settings to configure.'
+            )
         response_field = self.request.get('g-recaptcha-response')
         remote_addr = self.request.get('HTTP_X_FORWARDED_FOR', '').split(',')[0]
         if not remote_addr:
@@ -68,4 +73,3 @@ class RecaptchaView(BrowserView):
     @property
     def external(self):
         return True
-
