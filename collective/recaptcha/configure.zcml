@@ -23,4 +23,16 @@
       permission="zope2.ManageProperties"
       />
 
+  <utility
+      component=".vocabularies.available_languages"
+      name="collective.recaptcha.settings.AvailableLanguages"
+      provides="zope.schema.interfaces.IVocabularyFactory"
+      />
+
+  <utility
+      component=".vocabularies.available_themes"
+      name="collective.recaptcha.settings.AvailableThemes"
+      provides="zope.schema.interfaces.IVocabularyFactory"
+      />
+
 </configure>
