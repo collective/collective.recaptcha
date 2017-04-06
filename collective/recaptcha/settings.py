@@ -1,31 +1,44 @@
+# coding=utf-8
+from bbb import getSite
+from collective.recaptcha import RecaptchaMessageFactory as _
 from persistent import Persistent
 from plone.registry.interfaces import IRegistry
-from zope.interface import Interface, implements
-from zope.component import adapts, getUtility
 from zope import schema
-from zope.annotation import factory, IAttributeAnnotatable
-from bbb import getSite
+from zope.annotation import factory
+from zope.annotation import IAttributeAnnotatable
+from zope.component import adapts
+from zope.component import getUtility
+from zope.interface import implements
+from zope.interface import Interface
+
 
 try:
-    # Zope 2.12+
-    from five.formlib.formbase import EditForm
+    from zope.formlib.form import FormFields
+except ImportError:
+    # formlib missing (Plone 5?)
+    FormFields = None
+
+
+try:
+    # formlib missing (Plone 5?)
+    from plone.app.registry.browser.controlpanel import RegistryEditForm as EditForm  # noqa
 except ImportError:
     try:
-        # older Zope 2s
-        from Products.Five.formlib.formbase import EditForm
+        # Zope 2.12+
+        from five.formlib.formbase import EditForm
     except ImportError:
-        # Zope 3
-        from zope.formlib.form import EditForm
-
-from zope.formlib.form import FormFields
+        try:
+            # older Zope 2s
+            from Products.Five.formlib.formbase import EditForm
+        except ImportError:
+            # Zope 3
+            from zope.formlib.form import EditForm
 
 try:
     from plone.formwidget.recaptcha.interfaces import IReCaptchaSettings
     TRY_REGISTRY = True
 except ImportError:
     TRY_REGISTRY = False
-
-from collective.recaptcha import RecaptchaMessageFactory as _
 
 
 class IRecaptchaSettings(Interface):
@@ -74,5 +87,9 @@ def getRecaptchaSettings():
 
 
 class RecaptchaSettingsForm(EditForm):
-    form_fields = FormFields(IRecaptchaSettings)
+    schema = IRecaptchaSettings
     label = _(u"Recaptcha settings")
+
+    if FormFields:
+        # formlib missing (Plone 5?)
+        form_fields = FormFields(IRecaptchaSettings)
