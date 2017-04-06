@@ -34,17 +34,17 @@ class RecaptchaView(BrowserView):
     def image_tag(self):
         portal_state = queryMultiAdapter(
             (self.context, self.request), name=u'plone_portal_state')
-        if portal_state is not None and self.settings.multilingual:
+        if portal_state is not None:
             lang = portal_state.language()[:2]
         else:
-            lang = self.settings.default_language
+            lang = 'en'
 
         if not self.settings.public_key:
             raise ValueError(
                 'No recaptcha public key configured. '
                 'Go to /@@recaptcha-settings to configure.'
             )
-        return displayhtml(self.settings.public_key, lang, self.settings.default_theme, self.settings.fallback)
+        return displayhtml(self.settings.public_key, language=lang)
 
     def audio_url(self):
         return None
