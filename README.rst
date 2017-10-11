@@ -9,6 +9,10 @@ browser view, so these two packages can be swapped for each other relatively
 simply.  Use collective.captcha if you need to not be dependent on an external
 service; use collective.recaptcha for a slightly better user experience.
 
+Plone users interested in adding ReCAPTCHA in z3c.form forms
+will probably find interesting the package
+`plone.formwidget.recaptcha <https://github.com/plone/plone.formwidget.recaptcha>`_.
+
 Upgrade
 -------
 
@@ -54,14 +58,15 @@ Differences between this package's API and collective.captcha
 
 Because the simplest form of Recaptcha is rendered entirely via a remote call
 to the service, we couldn't implement the ICaptchaView interface from
-collective.captcha exactly as it was defined there.  Differences include::
+collective.captcha exactly as it was defined there.
+Differences include::
 
   * The image_tag method returns the HTML for the entire CAPTCHA widget,
     including text entry and audio link, not just the tag for the CAPTCHA
     image.
 
   * The audio_url method returns None
-  
+
   * The verify method does not require the input parameter, as a standard
     form input name is used and the value can be found in the request.
 
@@ -77,4 +82,3 @@ This add-on is tested using Travis CI. The current status of the add-on is :
 
 .. image:: https://secure.travis-ci.org/collective/collective.recaptcha.png
     :target: http://travis-ci.org/collective/collective.recaptcha
-

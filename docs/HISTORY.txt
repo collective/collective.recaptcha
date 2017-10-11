@@ -4,6 +4,7 @@ Changelog
 2.0.1 (unreleased)
 ------------------
 
+- Updated the documentation
 - Support Plone 5 without the need to pull in zope.formlib
   [ale-rt]
 
