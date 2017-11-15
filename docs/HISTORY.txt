@@ -9,6 +9,9 @@ Changelog
 - Support Plone 5 without the need to pull in zope.formlib
   [ale-rt]
 
+- Add install and uninstall profile and a controlpanel configlet
+  [frapell]
+
 
 2.0.0 (2016-03-06)
 ------------------
