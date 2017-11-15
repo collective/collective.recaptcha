@@ -2,7 +2,7 @@ language: python
 python: 2.7
 install:
   - mkdir -p buildout-cache/{eggs,downloads}
-  - python bootstrap.py -c travis.cfg
+  - python bootstrap.py -c travis.cfg  --setuptools-version=26.1.1 --buildout-version==1.7.1
   - bin/buildout -c travis.cfg -N -q -t 3
 script:
   - bin/test
