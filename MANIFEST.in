@@ -7,3 +7,4 @@ include travis.cfg
 include versions.cfg
 recursive-include collective *.zcml
 recursive-include docs *.txt
+recursive-exclude collective *.pyc
