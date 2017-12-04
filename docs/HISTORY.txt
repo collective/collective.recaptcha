@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0.1 (unreleased)
+2.1.0 (2017-12-04)
 ------------------
 
 - Updated bootstrap
