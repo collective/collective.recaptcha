@@ -51,6 +51,17 @@ class IRecaptchaSettings(Interface):
         title=_(u'Secret Key')
     )
 
+    dark_theme = schema.Bool(
+        title=u"Use Dark Theme",
+        description=u"Use dark theme instead of light",
+        required=False,
+        default=False)
+
+    compact_size = schema.Bool(
+        title=u"Use compact size",
+        description=u"Use compact size instead of normal",
+        required=False,
+        default=False)
 
 class RecaptchaSettingsAnnotations(Persistent):
     implements(IRecaptchaSettings)
