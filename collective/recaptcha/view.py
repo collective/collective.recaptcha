@@ -39,12 +39,22 @@ class RecaptchaView(BrowserView):
         else:
             lang = 'en'
 
+        if self.settings.dark_theme:
+            th = 'dark'
+        else:
+            th = 'light'
+
+        if self.settings.compact_size:
+            si = 'compact'
+        else:
+            si = 'normal'
+
         if not self.settings.public_key:
             raise ValueError(
                 'No recaptcha public key configured. '
                 'Go to /@@recaptcha-settings to configure.'
             )
-        return displayhtml(self.settings.public_key, language=lang)
+        return displayhtml(self.settings.public_key, language=lang, size=si, theme=th)
 
     def audio_url(self):
         return None
