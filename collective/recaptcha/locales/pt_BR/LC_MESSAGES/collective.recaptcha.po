@@ -1,0 +1,39 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2019-07-07 19:18+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: DOMAIN\n"
+
+#: collective/recaptcha/view.py:46
+msgid "Go to /@@recaptcha-settings to configure."
+msgstr "Va para /@@recaptcha-settings para configurar."
+
+#: collective/recaptcha/view.py:60
+msgid "No recaptcha private key configured. "
+msgstr "Chave privada do recaptcha não está configurada. "
+
+#: collective/recaptcha/view.py:45
+msgid "No recaptcha public key configured. "
+msgstr "Chave pública do recaptcha não está configurada. "
+
+#: collective/recaptcha/settings.py:91
+msgid "Recaptcha settings"
+msgstr "Configurações do Recaptcha"
+
+#: collective/recaptcha/settings.py:51
+msgid "Secret Key"
+msgstr "Chave privada"
+
+#: collective/recaptcha/settings.py:47
+msgid "Site Key"
+msgstr "Chave pública"
