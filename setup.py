@@ -32,6 +32,7 @@ setup(name='collective.recaptcha',
           'setuptools',
           'norecaptcha',
           'Plone',
+          'zope.i18nmessageid',
       ],
       extras_require={
           'test': [

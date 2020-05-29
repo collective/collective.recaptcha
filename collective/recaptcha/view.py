@@ -1,3 +1,4 @@
+from collective.recaptcha import RecaptchaMessageFactory as _
 from zope.interface import Interface, implements
 from zope.component import adapts, queryMultiAdapter
 from zope.annotation import factory
@@ -41,8 +42,8 @@ class RecaptchaView(BrowserView):
 
         if not self.settings.public_key:
             raise ValueError(
-                'No recaptcha public key configured. '
-                'Go to /@@recaptcha-settings to configure.'
+                _(u'No recaptcha public key configured. ') +
+                _(u'Go to /@@recaptcha-settings to configure.')
             )
         return displayhtml(self.settings.public_key, language=lang)
 
@@ -56,8 +57,8 @@ class RecaptchaView(BrowserView):
 
         if not self.settings.private_key:
             raise ValueError(
-                'No recaptcha private key configured. '
-                'Go to /@@recaptcha-settings to configure.'
+                _('No recaptcha private key configured. ') +
+                _('Go to /@@recaptcha-settings to configure.')
             )
         response_field = self.request.get('g-recaptcha-response')
         remote_addr = self.request.get('HTTP_X_FORWARDED_FOR', '').split(',')[0]
