@@ -18,7 +18,7 @@ class TestSettings(unittest.TestCase):
     def tearDown(self):
         try:
             settings = self.registry.forInterface(IRecaptchaSettings)
-        except:
+        except KeyError:
             settings = IRecaptchaSettings(self.portal)
         del settings
 
