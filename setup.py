@@ -1,46 +1,67 @@
-from setuptools import setup, find_packages
-import os
+# -*- coding: utf-8 -*-
+"""Installer for the collective.recaptcha package."""
 
-version = '2.1.1.dev0'
+from setuptools import find_packages
+from setuptools import setup
 
-setup(name='collective.recaptcha',
-      version=version,
-      description="Wraps the recaptcha-client library to provide a drop-in replacement for collective.captcha.",
-      long_description=(open("README.rst").read() + "\n" +
-                        open(os.path.join("docs", "HISTORY.txt")).read()),
-      # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
-      classifiers=[
-          "Topic :: Software Development :: Libraries :: Python Modules",
-          "Framework :: Zope2",
-          "Framework :: Plone",
-          "Framework :: Plone :: 4.2",
-          "Framework :: Plone :: 4.3",
-          "Framework :: Plone :: 5.0",
-          "Programming Language :: Python",
-          "Programming Language :: Python :: 2.7",
-      ],
-      keywords='captcha recaptcha zope plone',
-      author='David Glick',
-      author_email='david@glicksoftware.com',
-      url='http://github.com/collective/collective.recaptcha',
-      license='LGPL',
-      packages=find_packages(exclude=['ez_setup']),
-      namespace_packages=['collective'],
-      include_package_data=True,
-      zip_safe=False,
-      install_requires=[
-          'setuptools',
-          'norecaptcha',
-          'Plone',
-          'zope.i18nmessageid',
-      ],
-      extras_require={
-          'test': [
-              'plone.app.testing',
-          ]},
-      entry_points="""
-      # -*- Entry points: -*-
-      [z3c.autoinclude.plugin]
-      target = plone
-      """,
-      )
+
+long_description = '\n\n'.join([
+    open('README.rst').read(),
+    open('CONTRIBUTORS.rst').read(),
+    open('CHANGES.rst').read(),
+])
+
+
+setup(
+    name='collective.recaptcha',
+    version='2.1.1.dev0',
+    description="Wraps the recaptcha-client library to provide a drop-in replacement for collective.captcha.",
+    long_description=long_description,
+    # Get more from https://pypi.org/classifiers/
+    classifiers=[
+        "Environment :: Web Environment",
+        "Framework :: Plone",
+        "Framework :: Plone :: Addon",
+        "Framework :: Plone :: 4.2",
+        "Framework :: Plone :: 4.3",
+        "Framework :: Plone :: 5.0",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 2.7",
+        "Operating System :: OS Independent",
+        "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
+    ],
+    keywords='captcha recaptcha zope Python Plone',
+    author='David Glick',
+    author_email='david@glicksoftware.com',
+    url='https://github.com/collective/collective.recaptcha',
+    project_urls={
+        'PyPI': 'https://pypi.python.org/pypi/collective.recaptcha',
+        'Source': 'https://github.com/collective/collective.recaptcha',
+        'Tracker': 'https://github.com/collective/collective.recaptcha/issues',
+    },
+    license='GPL version 2',
+    packages=find_packages('src', exclude=['ez_setup']),
+    namespace_packages=['collective'],
+    package_dir={'': 'src'},
+    include_package_data=True,
+    zip_safe=False,
+    python_requires="==2.7",
+    install_requires=[
+        'setuptools',
+        'norecaptcha',
+        'Plone',
+        'zope.i18nmessageid',
+    ],
+    extras_require={
+        'test': [
+            'plone.app.testing',
+            'plone.testing>=5.0.0',
+        ],
+    },
+    entry_points="""
+    [z3c.autoinclude.plugin]
+    target = plone
+    [console_scripts]
+    update_locale = collective.recaptcha.locales.update:update_locale
+    """,
+)
