@@ -15,7 +15,6 @@ lib/
 local/
 node_modules/
 parts/
-src/*
 dist/*
 test.plone_addon/
 var/
@@ -34,11 +33,3 @@ reports/
 /local
 *project
 /.settings/
-# excludes
-!.coveragerc
-!.editorconfig
-!.gitattributes
-!.gitignore
-!.gitkeep
-!.travis.yml
-!src/collective
