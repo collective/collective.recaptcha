@@ -1,8 +1,42 @@
+dist: bionic
 language: python
-python: 2.7
+sudo: false
+cache:
+  pip: true
+  directories:
+  - eggs
+python:
+  - "2.7"
+matrix:
+  include:
+    - python: "2.7"
+      env: PLONE_VERSION=43
+    - python: "2.7"
+      env: PLONE_VERSION=50
+  fast_finish: true
+before_install:
+  - sudo apt-get install -y firefox-geckodriver
+  - virtualenv -p `which python` .
+  - bin/pip install -r requirements.txt -c constraints_plone$PLONE_VERSION.txt
+  - cp test_plone$PLONE_VERSION.cfg buildout.cfg
+
 install:
-  - mkdir -p buildout-cache/{eggs,downloads}
-  - python bootstrap.py -c travis.cfg  --setuptools-version=26.1.1 --buildout-version==1.7.1
-  - bin/buildout -c travis.cfg -N -q -t 3
+  - bin/buildout -t 3 code-analysis:return-status-codes=True annotate
+  - bin/buildout -t 3 code-analysis:return-status-codes=True
+
+before_script:
+- 'export DISPLAY=:99.0'
+- Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+- sleep 3
+- firefox -v
+
 script:
-  - bin/test
+# Run code-analysis, except on Python 3.6, which mysteriously fails to find zc.buildout.
+  - python --version 2> /dev/stdout | grep 3.6 || bin/code-analysis
+  - bin/test --all
+
+after_success:
+  - bin/createcoverage --output-dir=parts/test/coverage
+  - bin/pip install -q "coverage<5"
+  - bin/pip install -q coveralls
+  - bin/coveralls

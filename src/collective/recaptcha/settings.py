@@ -60,6 +60,7 @@ class RecaptchaSettingsAnnotations(Persistent):
         self.public_key = None
         self.private_key = None
 
+
 RecaptchaSettings = factory(RecaptchaSettingsAnnotations)
 
 
@@ -72,7 +73,7 @@ def getRecaptchaSettings():
             settings = registry.forInterface(IReCaptchaSettings)
             if settings.public_key and settings.private_key:
                 return settings
-        except:
+        except (AttributeError, KeyError):
             pass
     # try getting settings from the registry first
     try:

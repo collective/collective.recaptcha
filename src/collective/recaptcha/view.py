@@ -1,12 +1,16 @@
+# coding=utf-8
 from collective.recaptcha import RecaptchaMessageFactory as _
-from zope.interface import Interface, implements
-from zope.component import adapts, queryMultiAdapter
-from zope.annotation import factory
-from zope import schema
-from zope.publisher.interfaces.browser import IBrowserRequest
-from Products.Five import BrowserView
-from norecaptcha.captcha import displayhtml, submit
 from collective.recaptcha.settings import getRecaptchaSettings
+from norecaptcha.captcha import displayhtml
+from norecaptcha.captcha import submit
+from Products.Five import BrowserView
+from zope import schema
+from zope.annotation import factory
+from zope.component import adapts
+from zope.component import queryMultiAdapter
+from zope.interface import implements
+from zope.interface import Interface
+from zope.publisher.interfaces.browser import IBrowserRequest
 
 
 class IRecaptchaInfo(Interface):
@@ -21,6 +25,7 @@ class RecaptchaInfoAnnotation(object):
     def __init__(self):
         self.error = None
         self.verified = False
+
 
 RecaptchaInfo = factory(RecaptchaInfoAnnotation)
 
@@ -42,8 +47,8 @@ class RecaptchaView(BrowserView):
 
         if not self.settings.public_key:
             raise ValueError(
-                _(u'No recaptcha public key configured. ') +
-                _(u'Go to /@@recaptcha-settings to configure.')
+                _(u'No recaptcha public key configured. ')
+                + _(u'Go to /@@recaptcha-settings to configure.')
             )
         return displayhtml(self.settings.public_key, language=lang)
 
@@ -57,11 +62,12 @@ class RecaptchaView(BrowserView):
 
         if not self.settings.private_key:
             raise ValueError(
-                _('No recaptcha private key configured. ') +
-                _('Go to /@@recaptcha-settings to configure.')
+                _('No recaptcha private key configured. ')
+                + _('Go to /@@recaptcha-settings to configure.')
             )
         response_field = self.request.get('g-recaptcha-response')
-        remote_addr = self.request.get('HTTP_X_FORWARDED_FOR', '').split(',')[0]
+        remote_addr = self.request.get(
+            'HTTP_X_FORWARDED_FOR', '').split(',')[0]
         if not remote_addr:
             remote_addr = self.request.get('REMOTE_ADDR')
         res = submit(response_field, self.settings.private_key, remote_addr)

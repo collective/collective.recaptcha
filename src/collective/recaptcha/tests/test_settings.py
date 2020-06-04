@@ -1,10 +1,11 @@
 # encoding: utf-8
+from collective.recaptcha.settings import getRecaptchaSettings
 from collective.recaptcha.settings import IRecaptchaSettings
 from collective.recaptcha.settings import RecaptchaSettings
-from collective.recaptcha.settings import getRecaptchaSettings
 from collective.recaptcha.testing import COLLECTIVE_RECAPTCHA
 from plone.registry.interfaces import IRegistry
 from zope.component import getUtility
+
 import unittest
 
 
@@ -18,7 +19,7 @@ class TestSettings(unittest.TestCase):
     def tearDown(self):
         try:
             settings = self.registry.forInterface(IRecaptchaSettings)
-        except:
+        except KeyError:
             settings = IRecaptchaSettings(self.portal)
         del settings
 
