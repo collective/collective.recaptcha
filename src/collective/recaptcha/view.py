@@ -1,12 +1,16 @@
+# coding=utf-8
 from collective.recaptcha import RecaptchaMessageFactory as _
-from zope.interface import Interface, implements
-from zope.component import adapts, queryMultiAdapter
-from zope.annotation import factory
-from zope import schema
-from zope.publisher.interfaces.browser import IBrowserRequest
-from Products.Five import BrowserView
-from norecaptcha.captcha import displayhtml, submit
 from collective.recaptcha.settings import getRecaptchaSettings
+from norecaptcha.captcha import displayhtml
+from norecaptcha.captcha import submit
+from Products.Five import BrowserView
+from zope import schema
+from zope.annotation import factory
+from zope.component import adapts
+from zope.component import queryMultiAdapter
+from zope.interface import implements
+from zope.interface import Interface
+from zope.publisher.interfaces.browser import IBrowserRequest
 
 
 class IRecaptchaInfo(Interface):

@@ -1,3 +1,5 @@
+# coding=utf-8
+
 # BBB
 try:
     from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile

@@ -1,6 +1,7 @@
 # encoding: utf-8
-from plone.app.testing import PloneWithPackageLayer
 from plone.app.testing import PLONE_INTEGRATION_TESTING
+from plone.app.testing import PloneWithPackageLayer
+
 import collective.recaptcha
 
 

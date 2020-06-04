@@ -1,10 +1,11 @@
 # encoding: utf-8
+from collective.recaptcha.settings import getRecaptchaSettings
 from collective.recaptcha.settings import IRecaptchaSettings
 from collective.recaptcha.settings import RecaptchaSettings
-from collective.recaptcha.settings import getRecaptchaSettings
 from collective.recaptcha.testing import COLLECTIVE_RECAPTCHA
 from plone.registry.interfaces import IRegistry
 from zope.component import getUtility
+
 import unittest
 
 
