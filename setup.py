@@ -14,7 +14,7 @@ long_description = '\n\n'.join([
 
 setup(
     name='collective.recaptcha',
-    version='2.1.1.dev0',
+    version='3.0.0.dev0',
     description="Wraps the recaptcha-client library to provide a drop-in "
     "replacement for collective.captcha.",
     long_description=long_description,
@@ -23,7 +23,6 @@ setup(
         "Environment :: Web Environment",
         "Framework :: Plone",
         "Framework :: Plone :: Addon",
-        "Framework :: Plone :: 4.2",
         "Framework :: Plone :: 4.3",
         "Framework :: Plone :: 5.0",
         "Programming Language :: Python",
@@ -48,9 +47,10 @@ setup(
     zip_safe=False,
     python_requires="==2.7",
     install_requires=[
-        'setuptools',
         'norecaptcha',
-        'Plone',
+        'Plone >=4.3',
+        'Products.CMFCore',
+        'zope.component',
         'zope.i18nmessageid',
     ],
     extras_require={
