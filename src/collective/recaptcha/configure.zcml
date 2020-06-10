@@ -38,7 +38,7 @@
 
   <browser:page
       name="recaptcha-settings"
-      for=".bbb.ISite"
+      for="Products.CMFCore.interfaces.ISiteRoot"
       class=".settings.RecaptchaSettingsForm"
       permission="zope2.ManageProperties"
       />

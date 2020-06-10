@@ -1,5 +1,4 @@
 # coding=utf-8
-from bbb import getSite
 from collective.recaptcha import RecaptchaMessageFactory as _
 from persistent import Persistent
 from plone.registry.interfaces import IRegistry
@@ -8,6 +7,7 @@ from zope.annotation import factory
 from zope.annotation import IAttributeAnnotatable
 from zope.component import adapts
 from zope.component import getUtility
+from zope.component.hooks import getSite
 from zope.interface import implements
 from zope.interface import Interface
 
@@ -23,16 +23,8 @@ try:
     # formlib missing (Plone 5?)
     from plone.app.registry.browser.controlpanel import RegistryEditForm as EditForm  # noqa
 except ImportError:
-    try:
-        # Zope 2.12+
-        from five.formlib.formbase import EditForm
-    except ImportError:
-        try:
-            # older Zope 2s
-            from Products.Five.formlib.formbase import EditForm
-        except ImportError:
-            # Zope 3
-            from zope.formlib.form import EditForm
+    # Zope 2.12+
+    from five.formlib.formbase import EditForm
 
 try:
     from plone.formwidget.recaptcha.interfaces import IReCaptchaSettings

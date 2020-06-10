@@ -1,8 +1,11 @@
 Changelog
 =========
 
-2.1.1 (unreleased)
+3.0.0 (unreleased)
 ------------------
+
+- Drop support to Plone 4.2
+  [idgserpro]
 
 - Add translations
   [rodfersou]
