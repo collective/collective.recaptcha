@@ -50,6 +50,7 @@ setup(
         'norecaptcha',
         'Plone >=4.3',
         'Products.CMFCore',
+        'setuptools',
         'zope.component',
         'zope.i18nmessageid',
     ],
