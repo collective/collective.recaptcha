@@ -48,9 +48,11 @@ setup(
     zip_safe=False,
     python_requires="==2.7",
     install_requires=[
-        'setuptools',
         'norecaptcha',
-        'Plone',
+        'Plone >=4.3',
+        'Products.CMFCore',
+        'setuptools',
+        'zope.component',
         'zope.i18nmessageid',
     ],
     extras_require={
