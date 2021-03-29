@@ -6,9 +6,9 @@ from norecaptcha.captcha import submit
 from Products.Five import BrowserView
 from zope import schema
 from zope.annotation import factory
-from zope.component import adapts
+from zope.component import adapter
 from zope.component import queryMultiAdapter
-from zope.interface import implements
+from zope.interface import implementer
 from zope.interface import Interface
 from zope.publisher.interfaces.browser import IBrowserRequest
 
@@ -18,9 +18,9 @@ class IRecaptchaInfo(Interface):
     verified = schema.Bool()
 
 
+@implementer(IRecaptchaInfo)
+@adapter(IBrowserRequest)
 class RecaptchaInfoAnnotation(object):
-    implements(IRecaptchaInfo)
-    adapts(IBrowserRequest)
 
     def __init__(self):
         self.error = None
