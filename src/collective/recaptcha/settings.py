@@ -6,9 +6,9 @@ from plone.registry.interfaces import IRegistry
 from zope import schema
 from zope.annotation import factory
 from zope.annotation import IAttributeAnnotatable
-from zope.component import adapts
+from zope.component import adapter
 from zope.component import getUtility
-from zope.interface import implements
+from zope.interface import implementer
 from zope.interface import Interface
 
 
@@ -52,9 +52,9 @@ class IRecaptchaSettings(Interface):
     )
 
 
+@implementer(IRecaptchaSettings)
+@adapter(IAttributeAnnotatable)
 class RecaptchaSettingsAnnotations(Persistent):
-    implements(IRecaptchaSettings)
-    adapts(IAttributeAnnotatable)
 
     def __init__(self):
         self.public_key = None

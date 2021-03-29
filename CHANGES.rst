@@ -4,6 +4,10 @@ Changelog
 2.1.1 (unreleased)
 ------------------
 
+- Fixed startup on Python 3 (Plone 5.2).
+  The tests are not run yet on 5.2, so compatibility is not confirmed.
+  [maurits]
+
 - Add translations
   [rodfersou]
 
