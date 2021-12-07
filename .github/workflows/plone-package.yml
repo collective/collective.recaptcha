@@ -14,6 +14,7 @@ jobs:
                 plone-version:
                   - 'Plone50'
                   - 'Plone43'
+                  - 'Plone52'
                 python-version: [2.7]
 
         steps:

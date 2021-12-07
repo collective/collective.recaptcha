@@ -4,6 +4,9 @@ Changelog
 3.0.0 (unreleased)
 ------------------
 
+- Add support to Plone 5.2.
+  [wesleybl]
+
 - Fixed startup on Python 3 (Plone 5.2).
   The tests are not run yet on 5.2, so compatibility is not confirmed.
   [maurits]
