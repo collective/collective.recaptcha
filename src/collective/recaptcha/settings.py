@@ -21,9 +21,7 @@ except ImportError:
 
 try:
     # formlib missing (Plone 5?)
-    from plone.app.registry.browser.controlpanel import (
-        RegistryEditForm as EditForm,
-    )  # noqa
+    from plone.app.registry.browser.controlpanel import RegistryEditForm as EditForm
 except ImportError:
     # Zope 2.12+
     from five.formlib.formbase import EditForm
