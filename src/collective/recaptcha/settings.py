@@ -1,6 +1,7 @@
 # coding=utf-8
 from collective.recaptcha import RecaptchaMessageFactory as _
 from persistent import Persistent
+from plone.app.registry.browser.controlpanel import RegistryEditForm
 from plone.registry.interfaces import IRegistry
 from zope import schema
 from zope.annotation import factory
@@ -11,20 +12,6 @@ from zope.component.hooks import getSite
 from zope.interface import implementer
 from zope.interface import Interface
 
-
-try:
-    from zope.formlib.form import FormFields
-except ImportError:
-    # formlib missing (Plone 5?)
-    FormFields = None
-
-
-try:
-    # formlib missing (Plone 5?)
-    from plone.app.registry.browser.controlpanel import RegistryEditForm as EditForm
-except ImportError:
-    # Zope 2.12+
-    from five.formlib.formbase import EditForm
 
 try:
     from plone.formwidget.recaptcha.interfaces import IReCaptchaSettings
@@ -75,10 +62,6 @@ def getRecaptchaSettings():
         return IRecaptchaSettings(site)
 
 
-class RecaptchaSettingsForm(EditForm):
+class RecaptchaSettingsForm(RegistryEditForm):
     schema = IRecaptchaSettings
     label = _(u"Recaptcha settings")
-
-    if FormFields:
-        # formlib missing (Plone 5?)
-        form_fields = FormFields(IRecaptchaSettings)

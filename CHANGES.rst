@@ -4,6 +4,9 @@ Changelog
 3.0.0 (unreleased)
 ------------------
 
+- Remove attempt to use ``five.formlib`` in controlpanel form. Now only Plone 5.2 is supported.
+  [wesleybl]
+
 - Add support to Python 3.6, 3.7 and 3.8.
   [wesleybl]
 
