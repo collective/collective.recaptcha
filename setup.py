@@ -25,8 +25,6 @@ setup(
         "Environment :: Web Environment",
         "Framework :: Plone",
         "Framework :: Plone :: Addon",
-        "Framework :: Plone :: 4.3",
-        "Framework :: Plone :: 5.0",
         "Framework :: Plone :: 5.2",
         "Programming Language :: Python",
         "Programming Language :: Python :: 2.7",
@@ -51,7 +49,7 @@ setup(
     python_requires="==2.7",
     install_requires=[
         "norecaptcha",
-        "Plone >=4.3",
+        "Plone >=5.2",
         "Products.CMFCore",
         "setuptools",
         "zope.component",
@@ -60,7 +58,7 @@ setup(
     extras_require={
         "test": [
             "plone.app.testing",
-            "plone.testing>=5.0.0",
+            "plone.testing",
         ],
     },
     entry_points="""
