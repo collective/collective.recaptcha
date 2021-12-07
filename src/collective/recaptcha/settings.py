@@ -21,7 +21,9 @@ except ImportError:
 
 try:
     # formlib missing (Plone 5?)
-    from plone.app.registry.browser.controlpanel import RegistryEditForm as EditForm  # noqa
+    from plone.app.registry.browser.controlpanel import (
+        RegistryEditForm as EditForm,
+    )  # noqa
 except ImportError:
     try:
         # Zope 2.12+
@@ -36,6 +38,7 @@ except ImportError:
 
 try:
     from plone.formwidget.recaptcha.interfaces import IReCaptchaSettings
+
     TRY_REGISTRY = True
 except ImportError:
     TRY_REGISTRY = False
@@ -43,19 +46,14 @@ except ImportError:
 
 class IRecaptchaSettings(Interface):
 
-    public_key = schema.TextLine(
-        title=_(u'Site Key')
-    )
+    public_key = schema.TextLine(title=_(u"Site Key"))
 
-    private_key = schema.TextLine(
-        title=_(u'Secret Key')
-    )
+    private_key = schema.TextLine(title=_(u"Secret Key"))
 
 
 @implementer(IRecaptchaSettings)
 @adapter(IAttributeAnnotatable)
 class RecaptchaSettingsAnnotations(Persistent):
-
     def __init__(self):
         self.public_key = None
         self.private_key = None

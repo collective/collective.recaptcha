@@ -21,7 +21,6 @@ class IRecaptchaInfo(Interface):
 @implementer(IRecaptchaInfo)
 @adapter(IBrowserRequest)
 class RecaptchaInfoAnnotation(object):
-
     def __init__(self):
         self.error = None
         self.verified = False
@@ -31,7 +30,6 @@ RecaptchaInfo = factory(RecaptchaInfoAnnotation)
 
 
 class RecaptchaView(BrowserView):
-
     def __init__(self, context, request):
         self.context = context
         self.request = request
@@ -39,16 +37,17 @@ class RecaptchaView(BrowserView):
 
     def image_tag(self):
         portal_state = queryMultiAdapter(
-            (self.context, self.request), name=u'plone_portal_state')
+            (self.context, self.request), name=u"plone_portal_state"
+        )
         if portal_state is not None:
             lang = portal_state.language()[:2]
         else:
-            lang = 'en'
+            lang = "en"
 
         if not self.settings.public_key:
             raise ValueError(
-                _(u'No recaptcha public key configured. ')
-                + _(u'Go to /@@recaptcha-settings to configure.')
+                _(u"No recaptcha public key configured. ")
+                + _(u"Go to /@@recaptcha-settings to configure.")
             )
         return displayhtml(self.settings.public_key, language=lang)
 
@@ -62,14 +61,13 @@ class RecaptchaView(BrowserView):
 
         if not self.settings.private_key:
             raise ValueError(
-                _('No recaptcha private key configured. ')
-                + _('Go to /@@recaptcha-settings to configure.')
+                _("No recaptcha private key configured. ")
+                + _("Go to /@@recaptcha-settings to configure.")
             )
-        response_field = self.request.get('g-recaptcha-response')
-        remote_addr = self.request.get(
-            'HTTP_X_FORWARDED_FOR', '').split(',')[0]
+        response_field = self.request.get("g-recaptcha-response")
+        remote_addr = self.request.get("HTTP_X_FORWARDED_FOR", "").split(",")[0]
         if not remote_addr:
-            remote_addr = self.request.get('REMOTE_ADDR')
+            remote_addr = self.request.get("REMOTE_ADDR")
         res = submit(response_field, self.settings.private_key, remote_addr)
         if res.error_code:
             info.error = res.error_code
