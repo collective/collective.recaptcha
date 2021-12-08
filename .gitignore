@@ -34,3 +34,5 @@ reports/
 /local
 *project
 /.settings/
+local.cfg
+pyvenv.cfg

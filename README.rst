@@ -78,7 +78,7 @@ Differences include::
 Tests
 -----
 
-This add-on is tested using Travis CI. The current status of the add-on is :
+This add-on is tested using GitHub Actions. The current status of the add-on is :
 
-.. image:: https://secure.travis-ci.org/collective/collective.recaptcha.png
-    :target: http://travis-ci.org/collective/collective.recaptcha
+.. image:: https://img.shields.io/github/workflow/status/collective/collective.recaptcha/Plone%20package/master?label=GitHub%20Actions
+    :target: https://github.com/collective/collective.recaptcha/actions/workflows/plone-package.yml
