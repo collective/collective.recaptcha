@@ -55,6 +55,7 @@ setup(
     install_requires=[
         "norecaptcha",
         "Plone >=5.2",
+        "plone.app.registry",
         "Products.CMFCore",
         "setuptools",
         "zope.component",

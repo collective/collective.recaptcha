@@ -10,8 +10,6 @@
 
   <adapter
       factory=".view.RecaptchaInfo"/>
-  <adapter
-      factory=".settings.RecaptchaSettings"/>
 
   <genericsetup:registerProfile
       name="default"

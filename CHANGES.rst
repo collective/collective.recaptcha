@@ -4,6 +4,9 @@ Changelog
 3.0.0 (unreleased)
 ------------------
 
+- No longer reads settings in annotation in portal root.
+  [wesleybl]
+
 - Remove attempt to use ``five.formlib`` in controlpanel form. Now only Plone 5.2 is supported.
   [wesleybl]
 

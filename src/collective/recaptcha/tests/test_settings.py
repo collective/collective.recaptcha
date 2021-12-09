@@ -1,7 +1,6 @@
 # encoding: utf-8
 from collective.recaptcha.settings import getRecaptchaSettings
 from collective.recaptcha.settings import IRecaptchaSettings
-from collective.recaptcha.settings import RecaptchaSettings
 from collective.recaptcha.testing import COLLECTIVE_RECAPTCHA
 from plone.registry.interfaces import IRegistry
 from zope.component import getUtility
@@ -22,15 +21,6 @@ class TestSettings(unittest.TestCase):
         except KeyError:
             settings = IRecaptchaSettings(self.portal)
         del settings
-
-    def test_annotation(self):
-        annotation = RecaptchaSettings(self.portal)
-        annotation.public_key = u"FOO"
-        annotation.private_key = u"BAR"
-
-        settings = getRecaptchaSettings()
-        self.assertEqual(u"FOO", settings.public_key)
-        self.assertEqual(u"BAR", settings.private_key)
 
     def test_registry(self):
         self.registry.registerInterface(IRecaptchaSettings)

@@ -1,15 +1,9 @@
 # coding=utf-8
 from collective.recaptcha import RecaptchaMessageFactory as _
-from persistent import Persistent
 from plone.app.registry.browser.controlpanel import RegistryEditForm
 from plone.registry.interfaces import IRegistry
 from zope import schema
-from zope.annotation import factory
-from zope.annotation import IAttributeAnnotatable
-from zope.component import adapter
 from zope.component import getUtility
-from zope.component.hooks import getSite
-from zope.interface import implementer
 from zope.interface import Interface
 
 
@@ -28,17 +22,6 @@ class IRecaptchaSettings(Interface):
     private_key = schema.TextLine(title=_(u"Secret Key"))
 
 
-@implementer(IRecaptchaSettings)
-@adapter(IAttributeAnnotatable)
-class RecaptchaSettingsAnnotations(Persistent):
-    def __init__(self):
-        self.public_key = None
-        self.private_key = None
-
-
-RecaptchaSettings = factory(RecaptchaSettingsAnnotations)
-
-
 def getRecaptchaSettings():
     registry = getUtility(IRegistry)
     if TRY_REGISTRY:
@@ -50,16 +33,9 @@ def getRecaptchaSettings():
                 return settings
         except (AttributeError, KeyError):
             pass
-    # try getting settings from the registry first
-    try:
-        settings = registry.forInterface(IRecaptchaSettings)
-        if settings.public_key and settings.private_key:
-            return settings
-    except KeyError:
-        # fall back to our storage of an annotation on the site if the settings
-        # haven't been configured
-        site = getSite()
-        return IRecaptchaSettings(site)
+    settings = registry.forInterface(IRecaptchaSettings)
+    if settings.public_key and settings.private_key:
+        return settings
 
 
 class RecaptchaSettingsForm(RegistryEditForm):
