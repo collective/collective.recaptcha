@@ -4,7 +4,7 @@ Changelog
 3.0.0 (unreleased)
 ------------------
 
-- Add support to Python 3,6, 3.7 and 3.8.
+- Add support to Python 3.6, 3.7 and 3.8.
   [wesleybl]
 
 - Drop support to Plone 4.3 and Plone 5.0.
