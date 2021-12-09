@@ -39,10 +39,7 @@ class RecaptchaView(BrowserView):
         portal_state = queryMultiAdapter(
             (self.context, self.request), name=u"plone_portal_state"
         )
-        if portal_state is not None:
-            lang = portal_state.language()[:2]
-        else:
-            lang = "en"
+        lang = portal_state.language()[:2]
 
         if not self.settings.public_key:
             raise ValueError(
@@ -52,9 +49,15 @@ class RecaptchaView(BrowserView):
         return displayhtml(self.settings.public_key, language=lang)
 
     def audio_url(self):
+        """Method for compatibility with collective.captcha. See:
+        https://github.com/collective/collective.recaptcha#differences-between-this-packages-api-and-collectivecaptcha
+        """
         return None
 
-    def verify(self, input=None):
+    def verify(self, input=None):  # @ReservedAssignment
+        """The input parameter is for compatibility with collective.captcha. See:
+        https://github.com/collective/collective.recaptcha#differences-between-this-packages-api-and-collectivecaptcha
+        """
         info = IRecaptchaInfo(self.request)
         if info.verified:
             return True
@@ -77,4 +80,7 @@ class RecaptchaView(BrowserView):
 
     @property
     def external(self):
+        """Method for compatibility with collective.captcha. See:
+        https://github.com/collective/collective.recaptcha#differences-between-this-packages-api-and-collectivecaptcha
+        """
         return True
