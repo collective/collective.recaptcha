@@ -12,9 +12,8 @@ jobs:
             fail-fast: false
             matrix:
                 plone-version:
-                  - 'Plone50'
-                  - 'Plone43'
-                python-version: [2.7]
+                  - 'Plone52'
+                python-version: [2.7,3.6,3.7,3.8]
 
         steps:
             - uses: actions/checkout@v2
