@@ -10,9 +10,9 @@ from zope.interface import Interface
 try:
     from plone.formwidget.recaptcha.interfaces import IReCaptchaSettings
 
-    TRY_REGISTRY = True
+    TRY_FORMWIDGET = True
 except ImportError:
-    TRY_REGISTRY = False
+    TRY_FORMWIDGET = False
 
 
 class IRecaptchaSettings(Interface):
@@ -24,7 +24,7 @@ class IRecaptchaSettings(Interface):
 
 def getRecaptchaSettings():
     registry = getUtility(IRegistry)
-    if TRY_REGISTRY:
+    if TRY_FORMWIDGET:
         # if plone.formwidget.recaptcha is installed, try getting
         # its settings from the registry
         try:
