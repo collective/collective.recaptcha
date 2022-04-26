@@ -4,6 +4,9 @@ Changelog
 3.0.0 (unreleased)
 ------------------
 
+- Removes compatibility with ``collective.captcha``.
+  [wesleybl]
+
 - No longer reads settings in annotation in portal root.
   [wesleybl]
 

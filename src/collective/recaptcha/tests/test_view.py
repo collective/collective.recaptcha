@@ -28,9 +28,6 @@ class TestView(unittest.TestCase):
     def test_verify(self):
         self.assertFalse(self.view.verify())
 
-    def test_verify_with_input(self):
-        self.assertFalse(self.view.verify(input="input"))
-
     def test_verify_remote_addr(self):
         self.request["REMOTE_ADDR"] = "localhost"
         self.assertFalse(self.view.verify())
@@ -38,9 +35,3 @@ class TestView(unittest.TestCase):
     def test_verify_http_x_forwarded_for(self):
         self.request["HTTP_X_FORWARDED_FOR"] = "localhost1, localhost2"
         self.assertFalse(self.view.verify())
-
-    def test_audio_url(self):
-        self.assertIsNone(self.view.audio_url())
-
-    def test_external(self):
-        self.assertIs(self.view.external, True)

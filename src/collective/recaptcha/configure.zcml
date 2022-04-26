@@ -31,7 +31,7 @@
       for="*"
       class=".view.RecaptchaView"
       permission="zope.Public"
-      allowed_attributes="image_tag audio_url verify external"
+      allowed_attributes="image_tag verify"
       />
 
   <browser:page

@@ -48,16 +48,7 @@ class RecaptchaView(BrowserView):
             )
         return displayhtml(self.settings.public_key, language=lang)
 
-    def audio_url(self):
-        """Method for compatibility with collective.captcha. See:
-        https://github.com/collective/collective.recaptcha#differences-between-this-packages-api-and-collectivecaptcha
-        """
-        return None
-
-    def verify(self, input=None):  # @ReservedAssignment
-        """The input parameter is for compatibility with collective.captcha. See:
-        https://github.com/collective/collective.recaptcha#differences-between-this-packages-api-and-collectivecaptcha
-        """
+    def verify(self):
         info = IRecaptchaInfo(self.request)
         if info.verified:
             return True
@@ -77,10 +68,3 @@ class RecaptchaView(BrowserView):
 
         info.verified = res.is_valid
         return res.is_valid
-
-    @property
-    def external(self):
-        """Method for compatibility with collective.captcha. See:
-        https://github.com/collective/collective.recaptcha#differences-between-this-packages-api-and-collectivecaptcha
-        """
-        return True
