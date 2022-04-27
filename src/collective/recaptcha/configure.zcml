@@ -16,7 +16,8 @@
       title="collective.recaptcha"
       description="Install profile for the Recaptcha product."
       directory="profiles/default"
-      provides="Products.GenericSetup.interfaces.EXTENSION" />
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
 
   <genericsetup:registerProfile
       name="uninstall"
@@ -24,6 +25,11 @@
       directory="profiles/uninstall"
       description="Uninstall profile for the collective.recaptcha package."
       provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <utility
+      factory=".setuphandlers.HiddenProfiles"
+      name="collective.recaptcha-hiddenprofiles"
       />
 
   <browser:page

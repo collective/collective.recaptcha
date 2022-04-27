@@ -4,6 +4,9 @@ Changelog
 3.0.0 (unreleased)
 ------------------
 
+- Hide uninstall profile.
+  [wesleybl]
+
 - Removes compatibility with ``collective.captcha``.
   [wesleybl]
 
