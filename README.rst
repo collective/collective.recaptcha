@@ -43,7 +43,7 @@ Usage
 
 You can insert a Recaptcha using the following TAL::
 
-  <tal:block tal:replace="structure context/@@captcha/image_tag"/>
+  <tal:block tal:replace="structure python:context.restrictedTraverse('@@captcha').image_tag()"/>
 
 You can verify Recaptcha input by testing the return value of::
 
