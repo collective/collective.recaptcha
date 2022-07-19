@@ -59,6 +59,7 @@ setup(
     ],
     extras_require={
         "test": [
+            "plone.api",
             "plone.app.testing",
             "plone.testing>=5.0.0",
         ],

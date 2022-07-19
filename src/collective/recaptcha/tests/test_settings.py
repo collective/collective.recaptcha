@@ -2,7 +2,7 @@
 from collective.recaptcha.settings import getRecaptchaSettings
 from collective.recaptcha.settings import IRecaptchaSettings
 from collective.recaptcha.settings import RecaptchaSettings
-from collective.recaptcha.testing import COLLECTIVE_RECAPTCHA
+from collective.recaptcha.testing import COLLECTIVE_RECAPTCHA_INTEGRATION_TESTING
 from plone.registry.interfaces import IRegistry
 from zope.component import getUtility
 
@@ -10,7 +10,7 @@ import unittest
 
 
 class TestSettings(unittest.TestCase):
-    layer = COLLECTIVE_RECAPTCHA
+    layer = COLLECTIVE_RECAPTCHA_INTEGRATION_TESTING
 
     def setUp(self):
         self.portal = self.layer["portal"]
@@ -24,6 +24,12 @@ class TestSettings(unittest.TestCase):
         del settings
 
     def test_annotation(self):
+        del self.registry.records[
+            "collective.recaptcha.settings.IRecaptchaSettings.public_key"
+        ]
+        del self.registry.records[
+            "collective.recaptcha.settings.IRecaptchaSettings.private_key"
+        ]
         annotation = RecaptchaSettings(self.portal)
         annotation.public_key = u"FOO"
         annotation.private_key = u"BAR"
