@@ -1,5 +1,6 @@
 # encoding: utf-8
 """Tests of view."""
+from collective.recaptcha import PLONE4
 from collective.recaptcha.settings import IRecaptchaSettings
 from collective.recaptcha.testing import COLLECTIVE_RECAPTCHA_INTEGRATION_TESTING
 from plone.api.content import get_view
@@ -24,6 +25,22 @@ class TestView(unittest.TestCase):
             "https://www.google.com/recaptcha/api.js?hl=en&fallback=False&", image_tag
         )
         self.assertIn('data-sitekey="111"', image_tag)
+
+    def test_image_tag_extra_script_not_in_normal_request(self):
+        image_tag = self.view.image_tag()
+        self.assertNotIn("<script>", image_tag)
+
+    @unittest.skipUnless(PLONE4, "Relevant only for Plone 4")
+    def test_image_tag_extra_script__in_ajax_request_plone4(self):
+        self.request.set("HTTP_X_REQUESTED_WITH", "XMLHttpRequest")
+        image_tag = self.view.image_tag()
+        self.assertIn("<script>", image_tag)
+
+    @unittest.skipIf(PLONE4, "Relevant only for Plone >= 5")
+    def test_image_tag_extra_script__not_in_ajax_request_plone5(self):
+        self.request.set("HTTP_X_REQUESTED_WITH", "XMLHttpRequest")
+        image_tag = self.view.image_tag()
+        self.assertNotIn("<script>", image_tag)
 
     def test_verify(self):
         self.assertFalse(self.view.verify())
