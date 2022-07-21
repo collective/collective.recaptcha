@@ -16,7 +16,7 @@ long_description = "\n\n".join(
 
 setup(
     name="collective.recaptcha",
-    version="2.1.1",
+    version="2.1.2.dev0",
     description="Wraps the recaptcha-client library to provide a drop-in "
     "replacement for collective.captcha.",
     long_description=long_description,
