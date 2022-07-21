@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.1.1 (unreleased)
+2.1.1 (2022-07-21)
 ------------------
 
 - Fix recaptcha loading in Plone 4 modal.
