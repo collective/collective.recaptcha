@@ -1,4 +1,5 @@
 # coding=utf-8
+from collective.recaptcha import PLONE4
 from collective.recaptcha import RecaptchaMessageFactory as _
 from collective.recaptcha.settings import getRecaptchaSettings
 from norecaptcha.captcha import displayhtml
@@ -49,12 +50,37 @@ class RecaptchaView(BrowserView):
                 _(u"No recaptcha public key configured. ")
                 + _(u"Go to /@@recaptcha-settings to configure.")
             )
-        return displayhtml(self.settings.public_key, language=lang)
+        html = displayhtml(self.settings.public_key, language=lang)
+        if PLONE4 and self.request.get("HTTP_X_REQUESTED_WITH") == "XMLHttpRequest":
+            return """
+{0}<script>
+  $( document ).ready( function() {{
+    const recaptcha_script = $('script[src^="https://www.google.com/recaptcha/api.js"]');
+    if (!recaptcha_script.length){{
+      const script = document.createElement('script');
+      script.setAttribute(
+          'src',
+          'https://www.google.com/recaptcha/api.js?hl={1}&fallback=False&',
+        );
+      script.setAttribute('async', 'async');
+      script.setAttribute('defer', 'defer');
+      const div_recaptcha = document.getElementsByClassName('g-recaptcha')[0];
+      const parentNode = div_recaptcha.parentNode;
+      parentNode.insertBefore(script, div_recaptcha);
+    }}
+  }});
+</script>
+""".format(
+                html,
+                lang,
+            )
+
+        return html
 
     def audio_url(self):
         return None
 
-    def verify(self, input=None):
+    def verify(self, input=None):  # @ReservedAssignment
         info = IRecaptchaInfo(self.request)
         if info.verified:
             return True
