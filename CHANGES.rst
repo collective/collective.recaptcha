@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.1.2 (unreleased)
+2.1.2 (2022-07-26)
 ------------------
 
 - Keep record values when reapplying profile (fixes `#36 <https://github.com/collective/collective.recaptcha/issues/36>`_).
